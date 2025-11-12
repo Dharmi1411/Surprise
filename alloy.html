@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Alloy • Rings</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --text: #f4f4f4;
+  --accent: #c0c0c0;
+  --glow: rgba(255,255,255,0.4);
+}
+
+/* ===== Base Layout ===== */
+body {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  background: url("alloybg.png") no-repeat center center/cover;
+  background-attachment: fixed;
+  color: var(--text);
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ✨ Subtle silver gradient overlay (adds depth) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.1), rgba(0,0,0,0.85));
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== Floating Silver Flakes ===== */
+.flake {
+  position: fixed;
+  top: -10px;
+  color: var(--accent);
+  font-size: 12px;
+  opacity: 0.7;
+  animation: drift linear infinite, glow 4s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 6px var(--accent));
+  z-index: 1;
+}
+
+@keyframes drift {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(120vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 8px var(--accent); }
+  100% { text-shadow: 0 0 20px #ffffff; }
+}
+
+/* ===== Section Layout ===== */
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 70px;
+  padding: 120px 5%;
+  position: relative;
+  z-index: 2;
+  flex-wrap: wrap;
+}
+
+/* ===== Photo Stack ===== */
+.photo-stack {
+  position: relative;
+  width: 420px;
+  animation: fadeInLeft 1.8s ease forwards;
+  opacity: 0;
+}
+
+/* Soft glow behind photo area */
+.photo-stack::before {
+  content: "";
+  position: absolute;
+  inset: -60px;
+  background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+  filter: blur(25px);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.frame {
+  position: absolute;
+  width: 65%;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+  border: 8px solid #f5f2ed;
+  border-radius: 8px;
+  background-color: #f5f2ed;
+}
+
+.frame img {
+  width: 100%;
+  display: block;
+  border-radius: 5px;
+}
+
+.frame:nth-child(1) {
+  transform: rotate(3deg) translate(40px, 30px);
+  z-index: 1;
+}
+.frame:nth-child(2) {
+  transform: rotate(-5deg) translateY(-230px);
+  z-index: 2;
+}
+
+/* Hover effect */
+.photo-stack:hover .frame:nth-child(1) {
+  transform: rotate(-2deg) translateY(-25px) scale(1.02);
+}
+.photo-stack:hover .frame:nth-child(2) {
+  transform: rotate(2deg) translate(40px, 95px) scale(1.02);
+}
+
+/* ===== Text Section ===== */
+.text-side {
+  max-width: 520px;
+  line-height: 1.7;
+  font-size: 1.1em;
+  position: relative;
+  z-index: 3;
+  opacity: 0;
+  animation: fadeInRight 1.8s ease forwards;
+}
+
+.text-side::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: -40px;
+  width: calc(100% + 80px);
+  height: calc(100% + 60px);
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 12px;
+  z-index: -1;
+  backdrop-filter: blur(3px);
+}
+
+.text-side h2 {
+  font-family: 'Great Vibes', cursive;
+  color: var(--accent);
+  font-size: 2.8em;
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 0 0 18px rgba(255,255,255,0.4);
+}
+
+.text-side p {
+  margin-bottom: 20px;
+  color: #f1f1f1;
+  text-align: justify;
+}
+
+/* ===== Back Button ===== */
+.back-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #f4f4f4;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1em;
+  padding: 10px 26px;
+  border-radius: 30px;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 8px rgba(192, 192, 192, 0.5);
+  transition: all 0.4s ease-in-out;
+  z-index: 10;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: #000;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255,255,255,0.8);
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.fade-out {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+</style>
+</head>
+
+<body>
+
+<section>
+  <div class="photo-stack">
+    <div class="frame">
+      <img src="silver.jpg" alt="Silver ring photo">
+    </div>
+    <div class="frame">
+      <img src="ring.jpg" alt="Ring photo">
+    </div>
+  </div>
+
+  <div class="text-side">
+    <h2>The Alloy</h2>
+    <p>It wasn’t just silver — it was every quiet promise melted into form. The kind that doesn’t shout, but gleams gently even when the light fades.</p>
+    <p>Two rings, one silence — yet they said more than we ever could. The curve of metal catching the glow felt like your laughter turning into forever.</p>
+    <p>Maybe that’s what love is — an alloy of patience, mistakes, forgiveness, and all the tiny sparks that never stop shining.</p>
+  </div>
+</section>
+
+<!-- ✦ Floating Silver Flakes ✦ -->
+<script>
+const flakeCount = 90;
+for (let i = 0; i < flakeCount; i++) {
+  const flake = document.createElement('div');
+  flake.classList.add('flake');
+  flake.innerHTML = '✦';
+  flake.style.left = Math.random() * 100 + 'vw';
+  flake.style.animationDuration = (10 + Math.random() * 12) + 's';
+  flake.style.fontSize = (8 + Math.random() * 10) + 'px';
+  flake.style.opacity = 0.4 + Math.random() * 0.5;
+  document.body.appendChild(flake);
+}
+</script>
+
+<a href="timeline.html" class="back-btn" onclick="transitionToTimeline(event)">← Back to Timeline</a>
+<script>
+function transitionToTimeline(event) {
+  event.preventDefault();
+  document.body.classList.add('fade-out');
+  setTimeout(() => window.location.href = "timeline.html", 1200);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I’m Sorry 💔</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --accent: #ffb6c1;
+  --text: #fff9f7;
+  --dark-overlay: rgba(0, 0, 0, 0.55);
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("jerry.jpg") center/cover no-repeat;
+  font-family: 'Playfair Display', serif;
+  color: var(--text);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gradient overlay for mood */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+  z-index: 0;
+}
+
+/* Container for content */
+.container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 100px;
+}
+
+/* Text box */
+.text-box {
+  background: var(--dark-overlay);
+  padding: 30px 20px;
+  border-radius: 50px;
+  max-width: 800px;
+  line-height: 1.6em;
+  font-size: 1.1em;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  animation: fadeIn 2.5s ease forwards;
+}
+
+/* Meme image */
+.meme {
+  width: 250px;
+  border-radius: 10px;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 20px rgba(255,182,193,0.6);
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Simple animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* For small screens */
+@media (max-width: 1000px) {
+  .container {
+    flex-direction: column-reverse;
+    gap: 20px;
+    text-align: center;
+  }
+  .text-box {
+    max-width: 1000%;
+  }
+  .meme {
+    width: 500px;
+  }
+}
+/* ===== Back to Timeline Button ===== */
+.back-btn {
+  position: fixed;
+  bottom: 30px;
+right: 40px;
+transform: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #f4f4f4;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1em;
+  padding: 10px 26px;
+  border-radius: 30px;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 8px rgba(192, 192, 192, 0.5);
+  transition: all 0.4s ease-in-out;
+  z-index: 10;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: #000;
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+/* ===== Smooth Page Transition ===== */
+.fade-out {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="text-box">
+      <p style="font-family:'Great Vibes', cursive; font-size:1.8em; color:var(--accent); margin-bottom:10px;">
+        I’m sorry... 
+      </p>
+      <p>
+        I’m sorry, Bubu… for giving you insecurities again and again, even after you trusted me enough to say how they hurt you. I only wanted to help Tarun heal, to help Enamul move on but somewhere in between, I forgot the one who needed my care the most… you.
+
+I’m sorry for not listening when you were quiet, for missing the pain behind your calm words. I thought you were strong enough to hold it all but even the strongest hearts deserve rest, not weight.
+
+I’m sorry for my childish mistakes, for repeating them when I should’ve learned, for not loving you in the way you needed — slow, patient, and gentle.
+
+And I’m sorry for not taking care of you the way I promised to. For not protecting your peace, for letting my love turn noisy when it should have been calm.
+
+Most of all, I’m sorry for not fulfilling our dream yet the promise of becoming a surgeon, of making you proud. But I still carry it in my heart, quietly, as something I owe to us.
+
+        <br><br>
+        Because every apology I whisper now isn’t just regret…
+It’s love, learning to be gentler, quieter, truer.
+
+      </p>
+    </div>
+
+    <img src="sorry.jpg" alt="Sorry Meme" class="meme">
+  </div>
+<a href="timeline.html" class="back-btn" onclick="transitionToTimeline(event)">← Back to Timeline</a>
+<script>
+function transitionToTimeline(event) {
+  event.preventDefault(); // stop instant jump
+  document.body.classList.add('fade-out');
+  setTimeout(() => {
+    window.location.href = "timeline.html"; // your actual timeline page
+  }, 1200); // same as CSS transition duration
+}
+</script>
+
+</body>
+</html>
