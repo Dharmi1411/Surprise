@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surprise 🌙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --dark-bg: #150505;
+  --accent-bg: #2b0f0f;
+  --text-light: #f8f0e3;
+  --highlight: #d9b99b;
+}
+
+/* ====== PAGE BACKGROUND ====== */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: url("love.jpg") center/cover repeat;
+  font-family: 'Playfair Display', serif;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* adjust 0.4 for more or less darkness */
+  z-index: 0;
+}
+
+.text-section, .video-section {
+  position: relative;
+  z-index: 1;
+}
+
+/* ====== TEXT CONTAINER ====== */
+.text-section {
+  max-width: 800px;
+  margin-top: 100px;
+  padding: 40px 60px;
+  background: rgba(0, 0, 0, 0.5);
+  border-left: 4px solid var(--highlight);
+  border-right: 4px solid var(--highlight);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+}
+
+/* ====== PARAGRAPH ANIMATIONS ====== */
+.text-section p {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: fadeSlide 1.8s ease forwards;
+  font-size: 1.1em;
+  line-height: 1.7em;
+  margin-bottom: 30px;
+}
+
+.text-section p:nth-child(1) { animation-delay: 0s; transform: translateX(-60px); }
+.text-section p:nth-child(2) { animation-delay: 4s; transform: translateX(60px); }
+.text-section p:nth-child(3) { animation-delay: 8s; transform: translateX(-60px); }
+.text-section p:nth-child(4) { animation-delay: 12s; transform: translateX(60px); }
+
+@keyframes fadeSlide {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ====== VIDEO SECTION ====== */
+.video-section {
+  margin: 100px 0;
+  text-align: center;
+}
+
+.video-section video {
+  width: 80%;
+  max-width: 900px;
+  border-radius: 10px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.7);
+  outline: 2px solid var(--highlight);
+  background-color: #000;
+}
+
+/* Fullscreen button */
+.fullscreen-btn {
+  margin-top: 20px;
+  background: transparent;
+  border: 1px solid var(--highlight);
+  color: var(--text-light);
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Playfair Display', serif;
+}
+.fullscreen-btn:hover {
+  background: var(--highlight);
+  color: var(--dark-bg);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .text-section {
+    margin-top: 60px;
+    padding: 25px 20px;
+  }
+  .video-section video {
+    width: 95%;
+  }
+}
+/* 🌸 Heart Drop Animation 🌸 */
+.falling-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.heart {
+  position: absolute;
+  top: -10px;
+  color: #ff7da5;
+  font-size: 20px;
+  opacity: 0.9;
+  animation: fall linear forwards;
+  text-shadow: 
+    0 0 8px rgba(255, 182, 193, 0.9),
+    0 0 16px rgba(255, 105, 180, 0.6),
+    0 0 24px rgba(255, 182, 193, 0.8);
+}
+
+/* Falling animation */
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.2;
+  }
+}
+/* ===== Back to Timeline Button ===== */
+.back-btn {
+  position: fixed;
+  bottom: 30px;
+  left: 40%;
+  transform: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #f4f4f4;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1em;
+  padding: 10px 26px;
+  border-radius: 30px;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 8px rgba(192, 192, 192, 0.5);
+  transition: all 0.4s ease-in-out;
+  z-index: 10;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: #000;
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+}
+
+/* ===== Smooth Page Transition ===== */
+.fade-out {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="falling-hearts"></div>
+
+<div class="text-section">
+  <p>That night, when the world slept under a sky full of quiet stars, I kept thinking of us... of how every heartbeat has somehow led to this moment. Every smile, every fight, every small piece of love stitched into something too big for words.</p>
+
+  <p>I wanted to give you something honest not perfect, not rehearsed, just real. The kind of love that looks a little messy but feels like home. The kind that still trembles when it’s speaking the truth.</p>
+
+  <p>So before you watch it, just breathe. Close your eyes for a second. Remember how our love has survived through silence, distance, and time and know that what you’re about to see comes straight from that same love.</p>
+
+  <p>This is not a surprise for your eyes, it’s one for your soul. Because it carries the truth I’ve been holding in my heart since the very first day, till forever.</p>
+</div>
+
+<div class="video-section">
+  <video id="proposalVideo" controls>
+    <source src="proposal.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <br>
+  <button class="fullscreen-btn" onclick="openFullscreen()">⛶ Fullscreen</button>
+</div>
+
+<script>
+const video = document.getElementById('proposalVideo');
+function openFullscreen() {
+  if (video.requestFullscreen) {
+    video.requestFullscreen();
+  } else if (video.webkitRequestFullscreen) { /* Safari */
+    video.webkitRequestFullscreen();
+  } else if (video.msRequestFullscreen) { /* IE11 */
+    video.msRequestFullscreen();
+  }
+}
+</script>
+<script>
+const heartContainer = document.querySelector('.falling-hearts');
+
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.innerHTML = '❤';
+
+  // Randomize position, size, and animation speed
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.fontSize = 14 + Math.random() * 24 + 'px';
+  const duration = 4 + Math.random() * 6; // faster & varied
+  heart.style.animationDuration = duration + 's';
+
+  // Random delay for smoother flow
+  heart.style.animationDelay = Math.random() * 2 + 's';
+
+  heartContainer.appendChild(heart);
+
+  // Remove heart after animation ends
+  setTimeout(() => heart.remove(), (duration + 2) * 1000);
+}
+
+// Generate more hearts more often 💞
+setInterval(createHeart, 180);
+</script>
+<a href="timeline.html" class="back-btn" onclick="transitionToTimeline(event)">← Back to Timeline</a>
+<script>
+function transitionToTimeline(event) {
+  event.preventDefault(); // stop instant jump
+  document.body.classList.add('fade-out');
+  setTimeout(() => {
+    window.location.href = "timeline.html"; // your actual timeline page
+  }, 1200); // same as CSS transition duration
+}
+</script>
+
+</body>
+</html>

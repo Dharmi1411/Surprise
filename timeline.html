@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story Timeline</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
+
+<style>
+/* Page fade-in animation */
+body {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* When the page finishes loading */
+body.fade-in {
+  opacity: 1;
+}
+
+/* Optional fade-out before navigating */
+a {
+  transition: opacity 0.3s ease-in-out;
+}
+
+a.fade-out {
+  opacity: 0;
+}
+
+:root {
+  --bg: #FAF3E0;      
+  --heart: #7B0F17;   
+  --line: #4B1E1E;    
+  --text: #2E0D0D;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+header {
+  background-color: var(--line);
+  color: var(--bg);
+  text-align: center;
+  padding: 25px 0;
+  font-size: 2em;
+  letter-spacing: 1px;
+  font-family: 'Playfair Display', serif;
+  border-bottom: 4px solid var(--heart);
+}
+
+/* Timeline container centered vertically */
+.timeline {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 1300px;
+  text-align: center;
+}
+
+/* Main horizontal line */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--line);
+  z-index: 0;
+  border-radius: 2px;
+}
+
+/* Starting dot */
+.timeline::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 7px);
+  left: -8px;
+  width: 14px;
+  height: 14px;
+  background: var(--line);
+  border-radius: 50%;
+}
+
+/* Infinity symbol (enlarged and slightly below the line) */
+.infinity {
+  position: absolute;
+  top: calc(-1% + -1px);
+  right: -35px;
+  transform: scale(6);
+  color: var(--line);
+  font-weight: bold;
+  font-family: serif;
+}
+
+/* Events */
+.event {
+  display: inline-block;
+  text-align: center;
+  width: 11%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hearts with soft, glowing border shadow */
+.heart {
+  position: absolute;
+  top: calc(50% - 60px);
+  left: 50%;
+  transform: translateX(-50%) rotate(-45deg);
+  width: 40px;
+  height: 36px;
+  background-color: var(--heart);
+  box-shadow: 0 0 20px rgba(123, 15, 23, 0.8);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.heart:hover {
+  transform: translateX(-50%) rotate(-45deg) scale(1.15);
+  box-shadow: 0 0 30px rgba(123, 15, 23, 1);
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 36px;
+  background-color: var(--heart);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(123, 15, 23, 0.8);
+}
+
+.heart::before {
+  top: -20px;
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 20px;
+}
+
+/* Titles below the main line */
+.event p {
+  position: absolute;
+  top: calc(50%);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.05em;
+  color: var(--text);
+  font-weight: 600;
+  font-family: 'Playfair Display', serif;
+  width: 120px;
+  line-height: 1.2em;
+}
+
+/* Scrolling text */
+.scrolling-text {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: var(--line);
+  color: var(--bg);
+  padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: 3px solid var(--heart);
+  font-size: 1em;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.scrolling-text span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scrollText 25s linear infinite;
+}
+
+@keyframes scrollText {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+</style>
+</head>
+
+<body>
+  <header>Our Story • Timeline of Us</header>
+
+  <div class="timeline">
+    <div class="event"><a href="dress.html"><div class="heart"></div></a><p>My Dress</p></div>
+    <div class="event"><a href="memories.html"><div class="heart"></div></a><p>Our Memories</p></div>
+    <div class="event"><a href="lines.html"><div class="heart"></div></a><p>Lines That Remind Me of You</p></div>
+    <div class="event"><a href="apologies.html"><div class="heart"></div></a><p>Apologies</p></div>
+    <div class="event"><a href="surprise.html"><div class="heart"></div></a><p>Surprise</p></div>
+    <div class="event"><a href="alloy.html"><div class="heart"></div></a><p>Alloy</p></div>
+    <div class="event"><a href="grateful.html"><div class="heart"></div></a><p>Grateful</p></div>
+    <div class="event"><a href="whyiloveyou.html"><div class="heart"></div></a><p>Why I Love You So Much</p></div>
+    <div class="infinity">∞</div>
+  </div>
+
+  <div class="scrolling-text">
+    <span>Our story glows brighter than stars ♡ You are the light of my universe ♡ My soul is irrevocably tied to ♡ A love without end, in every universe ♡ You are my forever ♡ I am yours, completely and truly </span>
+  </div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("fade-in");
+
+    // Fade out when clicking a link
+    document.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", e => {
+        const href = link.getAttribute("href");
+        if (!href || href.startsWith("#")) return; // skip same-page links
+        e.preventDefault();
+        document.body.classList.remove("fade-in");
+        document.body.classList.add("fade-out");
+        setTimeout(() => window.location = href, 600); // delay for animation
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

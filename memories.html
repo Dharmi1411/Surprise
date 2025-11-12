@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Memories</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+/* ========== INTRO TEXT ========== */
+.intro-text {
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2em;
+  color: var(--accent);
+  opacity: 0;
+  z-index: 20;
+  animation: introFade 10s ease-in-out forwards;
+}
+
+@keyframes introFade {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Hide slideshow at start */
+.film-container {
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+:root {
+  --bg: #2b0f0f;
+  --accent: #f5d6ba;
+  --text: #fff5ee;
+}
+
+/* ========== BODY & BACKGROUND ========== */
+body {
+  margin: 0;
+  background-color: var(--bg);
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.05), transparent 70%);
+  z-index: 0;
+}
+
+/* ========== HEADER TITLE ========== */
+header {
+  width: 100%;
+  background: linear-gradient(to bottom, #3a0d0d, #2b0f0f);
+  color: var(--accent);
+  text-align: center;
+  padding: 0px 0 0px 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8em;
+  letter-spacing: 2px;
+  z-index: 10;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.8em;
+  font-weight: 600;
+}
+
+header p {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.4em;
+  color: var(--text);
+  margin-top: 8px;
+  opacity: 0.85;
+}
+
+
+/* ========== FILM STRIP AREA ========== */
+.film-container {
+  position: relative;
+  width: 200vw;
+  height: calc(100vh - 140px);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 1;
+  margin-top: -30px;
+}
+
+.film-strip {
+  display: flex;
+  gap: 40px;
+  animation: scroll 200s linear infinite;
+  animation-play-state: paused; /* stop initially */
+}
+
+@keyframes scroll {
+  0%   { transform: translateX(100vw); }
+  100% { transform: translateX(-200%); }
+}
+
+/* ========== FRAMES ========== */
+.frame {
+  position: relative;
+  background: #111;
+  border: 6px solid #1f1f1f;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+  width: 280px;
+  height: 380px;
+  flex-shrink: 0;
+}
+
+.frame img,
+.frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.4) contrast(1.05) brightness(0.95);
+  transition: transform 0.4s ease;
+}
+
+.frame:hover img,
+.frame:hover video {
+  transform: scale(1.05);
+}
+
+/* Caption */
+.caption {
+  position: absolute;
+  bottom: 12px;
+  left: 15px;
+  right: 15px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.7em;
+  color: var(--accent);
+  text-shadow: 1px 1px 3px #000;
+  text-align: center;
+}
+
+/* Fade top & bottom */
+.film-container::before,
+.film-container::after {
+  content: "";
+  position: absolute;
+  left: 0; width: 100%;
+  height: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+.film-container::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--bg), transparent);
+}
+.film-container::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--bg), transparent);
+}
+
+/* Music button */
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--text);
+  font-size: 1em;
+  padding: 10px 22px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Playfair Display', serif;
+  z-index: 10;
+}
+.music-btn:hover {
+  background: var(--accent);
+  color: #2b0f0f;
+}
+.back-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--text);
+  font-size: 1em;
+  padding: 10px 22px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Playfair Display', serif;
+  z-index: 10;
+  opacity: 0;
+  animation: fadeInBack 2s ease forwards;
+  animation-delay: 6s; /* appears after intro text finishes */
+}
+
+.back-btn:hover {
+  background: var(--accent);
+  color: #2b0f0f;
+}
+
+@keyframes fadeInBack {
+  to { opacity: 1; }
+}
+
+</style>
+</head>
+
+<body>
+<div class="intro-text">
+  <p>Every love story has its rhythm — ours hums softly between laughter, late-night talks, and quiet moments that never needed words.
+
+These pictures are pieces of us — days we’ve lived, promises we’ve whispered, and glances that spoke louder than anything else. Each one reminds me that no matter how much time passes, you and I have always been written into the same heartbeat.
+
+So here’s to us — to every memory, every smile, every second that became a forever in its own way. ♡</p>
+</div>
+
+  <!-- 🌸 TITLE SECTION -->
+  <header>
+    <h3>OUR’S </h3>
+  </header>
+
+  <!-- 🌸 FILM SECTION -->
+  <div class="film-container">
+  <div class="film-strip">
+
+    <div class="frame"><img src="./mem1.jpg"><div class="caption">A 💕 D — The beginning</div></div>
+    <div class="frame"><img src="mem2.jpg"><div class="caption">Same to same ❤️</div></div>
+    <div class="frame"><img src="mem3.jpg"><div class="caption">When we matched colours 💙</div></div>
+    <div class="frame"><img src="mem4.jpg"><div class="caption">Blended souls, one heart 🌸</div></div>
+    <div class="frame"><img src="mem5.jpg"><div class="caption">Our first laugh together 😄</div></div>
+
+
+    <div class="frame">
+      <video autoplay loop muted playsinline>
+        <source src="mem6.mp4" type="video/mp4">
+      </video>
+      <div class="caption">Your smile, my peace ☀️</div>
+    </div>
+
+    <div class="frame"><img src="mem7.jpg"><div class="caption">The best surprise I've ever got ❤️</div></div>
+    <div class="frame"><img src="mem8.jpg"><div class="caption">Captured moments, endless love 📸</div></div>
+    <div class="frame"><img src="mem9.jpg"><div class="caption">My favourite view — You 🌹</div></div>
+
+    <div class="frame">
+      <video autoplay loop muted playsinline>
+        <source src="mem10.mp4" type="video/mp4">
+      </video>
+      <div class="caption">Together, we shine brighter ✨</div>
+    </div>
+
+    <div class="frame"><img src="mem11.png"><div class="caption">That day I knew it’s forever 💞</div></div>
+    <div class="frame"><img src="mem12.jpg"><div class="caption">Pure joy in one frame 🧸</div></div>
+    <div class="frame"><img src="mem13.jpg"><div class="caption">You = Home 🏡</div></div>
+    <div class="frame"><img src="mem14.jpg"><div class="caption">The laughter we’ll never forget 😂</div></div>
+    <div class="frame"><img src="mem15.jpg"><div class="caption">Every little glance, every beat 💓</div></div>
+    <div class="frame"><img src="mem16.jpg"><div class="caption">Our memories, my treasure box 🎞️</div></div>
+    <div class="frame"><img src="mem17.jpg"><div class="caption">When time stood still ⏳</div></div>
+    <div class="frame"><img src="mem18.jpg"><div class="caption">That spark in your eyes 🔥</div></div>
+    <div class="frame"><img src="mem19.jpg"><div class="caption">Walking through dreams together 🌙</div></div>
+    <div class="frame"><img src="mem20.jpg"><div class="caption">My forever person 💖</div></div>
+    <div class="frame"><img src="mem21.jpg"><div class="caption">Forever begins here 💍</div></div>
+    <div class="frame"><img src="mem22.jpg"><div class="caption">The way your smile lights the world 🌞</div></div>
+    <div class="frame"><img src="mem23.jpg"><div class="caption">Through every season, you & me 🍁</div></div>
+    <div class="frame"><img src="mem24.jpg"><div class="caption">Our story, beautifully written 🕊️</div></div>
+    <div class="frame"><img src="mem25.jpg"><div class="caption">Always and forever ♾️💫</div></div>
+
+  </div>
+</div>
+
+  <!-- 🌸 MUSIC PLAYER -->
+  <audio id="bg-music" loop>
+    <source src="softmusic.mp3" type="audio/mp3">
+  </audio>
+
+  <button class="music-btn" onclick="toggleMusic()">♫ Play Music</button>
+  <button class="back-btn" onclick="goBack()">← Back to Timeline</button>
+
+ <script>
+const music = document.getElementById('bg-music');
+let playing = false;
+
+function toggleMusic() {
+  if (!playing) {
+    music.play();
+    playing = true;
+    document.querySelector('.music-btn').innerText = '⏸ Pause';
+  } else {
+    music.pause();
+    playing = false;
+    document.querySelector('.music-btn').innerText = '♫ Play Music';
+  }
+}
+
+window.addEventListener("load", () => {
+  const intro = document.querySelector(".intro-text");
+  const filmContainer = document.querySelector(".film-container");
+  const filmStrip = document.querySelector(".film-strip");
+
+  // Keep slideshow hidden initially
+  filmContainer.style.opacity = "0";
+  filmStrip.style.animationPlayState = "paused";
+
+  // Wait 4 seconds before fading out intro
+  setTimeout(() => {
+    intro.style.transition = "opacity 1s ease";
+    intro.style.opacity = "0";
+
+    // After fade-out completes, show slideshow
+    setTimeout(() => {
+      intro.style.display = "none";
+      filmContainer.style.transition = "opacity 1.5s ease";
+      filmContainer.style.opacity = "1";
+      filmStrip.style.animationPlayState = "running"; // ✅ start scroll
+    }, 1000);
+  }, 10000); // ✅ Start slideshow 4s after page load
+});
+
+function goBack() {
+  // Add your actual timeline page link here:
+  window.location.href = "timeline.html";
+}
+</script>
+
+
+
+</body>
+</html>
