@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grateful 🌙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #f6f0e9;
+  --accent: #6b1919;
+  --text: #3b1f1f;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+background: radial-gradient(circle at center,
+  #fde2e4 0%,     /* pale blush center */
+  #f9c5c8 25%,    /* light rose */
+  #f7a9a8 45%,    /* soft coral pink */
+  #e79ca6 65%,    /* warm pink */
+  #b56576 80%,    /* muted raspberry */
+  #944d5a 90%,    /* antique pink */
+  #702f3a 100%    /* vintage pink edge (darkest) */
+);
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+  font-family: 'Playfair Display', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  text-align: center;
+  max-width: 1100px;
+  width: 90%;
+  opacity: 0;
+  animation: fadeIn 1.8s ease forwards;
+}
+
+/* ===== HEADING ===== */
+h2 {
+  font-family: 'Great Vibes', cursive;
+  color: var(--accent);
+  font-size: 2.6em;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: slideDown 1.5s ease forwards;
+  animation-delay: 0.6s;
+}
+
+/* ===== GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+/* ===== BOX ===== */
+.box {
+  background-color: var(--accent);
+  color: #fff;
+  padding: 25px 20px;
+  border-radius: 12px;
+  position: relative;
+  font-size: 1em;
+  line-height: 1.6;
+  width: 280px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(40px);
+  animation: floatUp 3s ease forwards;
+}
+
+/* Each box appears slightly after the previous */
+.box:nth-child(1) { animation-delay: 1s; }
+.box:nth-child(2) { animation-delay: 1.6s; }
+.box:nth-child(3) { animation-delay: 2.2s; }
+.box:nth-child(4) { animation-delay: 2.8s; }
+.box:nth-child(5) { animation-delay: 3.4s; }
+.box:nth-child(6) { animation-delay: 4s; }
+
+/* Decorative triangle cutout */
+.box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid rgba(255, 240, 240, 0.6); /* translucent pinkish */
+}
+
+/* ===== Back to Timeline Button ===== */
+.back-btn {
+  display: inline-block;
+  margin-top: 50px;
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+  animation-delay: 4.8s;
+}
+.back-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+@keyframes slideDown {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes floatUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  60% { opacity: 1; transform: translateY(-5px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Fade transition for navigation ===== */
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.orbs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.orb {
+  position: absolute;
+  bottom: -50px;
+  border-radius: 50%;
+  opacity: 0.7;
+  background: radial-gradient(circle, rgba(255,182,193,0.6), rgba(255,192,203,0.1));
+  animation: rise linear forwards;
+  box-shadow: 0 0 10px rgba(255,192,203,0.6);
+}
+
+@keyframes rise {
+  0% { transform: translateY(0) scale(0.6); opacity: 0.8; }
+  100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+}
+
+</style>
+</head>
+
+<body>
+<div class="orbs" id="orbs"></div>
+
+  <div class="container">
+
+    <h2>Grateful cause I've youu 🫶🏻</h2>
+    <div class="grid">
+      <div class="box">For your patience when I stumbled, and your warmth when I forgot how to smile.</div>
+      <div class="box">For every silent reassurance you gave when words were too heavy to speak.</div>
+      <div class="box">For the laughter you brought into my storms — it still echoes softly in my heart.</div>
+      <div class="box">For teaching me that love isn’t loud — it’s gentle, steady, and endlessly kind.</div>
+      <div class="box">For being my constant, even when I made it hard to stay close.</div>
+      <div class="box">And for reminding me, again and again, that I am loved beyond my mistakes.</div>
+    </div>
+    <button class="back-btn" onclick="transitionToTimeline(event)">← Back to Timeline</button>
+  </div>
+
+<script>
+function transitionToTimeline(event) {
+  event.preventDefault();
+  document.body.classList.add('fade-out');
+  setTimeout(() => {
+    window.location.href = "timeline.html";
+  }, 1000);
+}
+</script>
+<script>
+const orbContainer = document.getElementById("orbs");
+function createOrb() {
+  const orb = document.createElement("div");
+  orb.classList.add("orb");
+  const size = Math.random() * 25 + 15; // 15–40px
+  orb.style.width = `${size}px`;
+  orb.style.height = `${size}px`;
+  orb.style.left = Math.random() * 100 + "vw";
+  orb.style.animationDuration = 5 + Math.random() * 5 + "s";
+  orb.style.background = `radial-gradient(circle, rgba(255,192,203,0.6), rgba(255,228,225,0.1))`;
+  orbContainer.appendChild(orb);
+  setTimeout(() => orb.remove(), 10000);
+}
+setInterval(createOrb, 100);
+</script>
+
+</body>
+</html>

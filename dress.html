@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Dress</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Great+Vibes&family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #7B0F17;
+  --text-light: #FAF3E0;
+  --accent: #ffd9d9;
+  --petal: rgba(255, 200, 200, 0.3);
+}
+
+/* ===== Base Layout ===== */
+body {
+  margin: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(180,30,40,0.5), transparent 80%), 
+              linear-gradient(180deg, #6a0e14, #310709);
+  color: var(--text-light);
+  font-family: 'Cormorant Garamond', serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 60px;
+  opacity: 0;
+  animation: fadeInPage 1.5s ease forwards;
+  position: relative;
+}
+
+/* ✨ Fade-In Page Animation */
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Floating Petals Animation ===== */
+.petal {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--petal);
+  border-radius: 50% 50% 50% 0;
+  opacity: 0.7;
+  transform: rotate(45deg);
+  animation: fall 10s linear infinite;
+}
+@keyframes fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.8; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* ===== Text Section ===== */
+.text-section {
+  width: 45%;
+  padding-right: 40px;
+  z-index: 2;
+}
+
+.text-section h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5em;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 12px rgba(255, 200, 200, 0.3);
+  animation: glowText 4s ease-in-out infinite alternate;
+}
+@keyframes glowText {
+  from { text-shadow: 0 0 10px rgba(255,180,180,0.4); }
+  to { text-shadow: 0 0 20px rgba(255,200,200,0.8); }
+}
+
+.text-section h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2em;
+  color: var(--accent);
+  margin-top: 0;
+  margin-bottom: 25px;
+  text-shadow: 0 0 10px rgba(255,190,190,0.3);
+}
+
+.text-section p {
+  line-height: 1.6;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.text-section .signature {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2em;
+  color: var(--accent);
+  text-shadow: 0 0 8px rgba(255,210,210,0.4);
+}
+
+/* ===== Back Button ===== */
+.text-section a.button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 25px;
+  color: var(--bg);
+  background-color: var(--text-light);
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 30px;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 0 10px rgba(250, 243, 224, 0.3);
+}
+.text-section a.button:hover {
+  background-color: var(--accent);
+  box-shadow: 0 0 25px rgba(250, 243, 224, 0.5);
+  transform: scale(1.08);
+}
+
+/* ===== Polaroid Layout ===== */
+.polaroid-container {
+  width: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+/* Each Polaroid Frame */
+.polaroid {
+  background: #fff;
+  padding: 10px 10px 30px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  position: absolute;
+  border-radius: 4px;
+  width: 300px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.polaroid::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  background: radial-gradient(circle, rgba(255,200,200,0.3), transparent 70%);
+  z-index: -1;
+  border-radius: 8px;
+}
+
+/* Hover shimmer */
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg);
+  box-shadow: 0 0 25px rgba(255,180,180,0.6);
+  z-index: 3;
+}
+
+/* Video Polaroid (top) */
+.polaroid.video {
+  transform: rotate(-6deg);
+  top: 5px;
+  right: 30px;
+  z-index: 2;
+}
+
+/* Image Polaroid (bottom) */
+.polaroid.image {
+  transform: rotate(4deg);
+  bottom: -200px;
+  left: 20px;
+  z-index: 1;
+}
+
+.polaroid video,
+.polaroid img {
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+
+/* ===== Smooth Fade-Out on Back ===== */
+body.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+</style>
+</head>
+
+<body>
+  <!-- Floating Petals -->
+  <div id="petals"></div>
+
+  <!-- Left Side Text -->
+  <div class="text-section">
+    <h1>Hi Darling</h1>
+    <h2>I am so glad you stopped by</h2>
+    <p>
+      This moment, “My Dress,” is the most delicate thread in our story — where fabric meets feeling, and memory weaves itself into love. Every fold, every color, every breath of it reminds me of you — timeless, gentle, and endlessly dear.
+    </p>
+    <p>
+      Like this dress that graces my skin, your love wraps around me in warmth — soft, steady, and quietly certain, reminding me of the very first day my heart recognized its home in you.
+    </p>
+    <p class="signature">xoxo, Yours Always</p>
+    <a href="timeline.html" class="button">Back to Timeline</a>
+  </div>
+
+  <!-- Right Side Polaroids -->
+  <div class="polaroid-container">
+    <div class="polaroid video">
+      <video autoplay loop muted playsinline>
+        <source src="mydress-video.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="polaroid image">
+      <img src="mydress-photo.jpg" alt="My Dress Memory">
+    </div>
+  </div>
+
+<script>
+/* === Floating Petals Script === */
+const petalsContainer = document.getElementById("petals");
+function createPetal() {
+  const petal = document.createElement("div");
+  petal.classList.add("petal");
+  petal.style.left = Math.random() * 100 + "vw";
+  petal.style.animationDuration = 8 + Math.random() * 4 + "s";
+  petal.style.opacity = Math.random();
+  petalsContainer.appendChild(petal);
+  setTimeout(() => petal.remove(), 12000);
+}
+setInterval(createPetal, 400);
+
+/* === Smooth Fade-Out Transition === */
+document.querySelector('.button').addEventListener('click', function(e) {
+  e.preventDefault();
+  document.body.classList.add('fade-out');
+  setTimeout(() => {
+    window.location.href = this.href;
+  }, 1000);
+});
+</script>
+
+</body>
+</html>

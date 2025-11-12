@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Love You, Always 🌙</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --blood-red: #74070E;
+  --vanilla: #F4E3B2;
+  --dark-brown: #45462A;
+  --cinereous: #947268;
+  --black-bean: #310E10;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(rgba(49,14,16,0.7), rgba(49,14,16,0.7)),
+              url('https://i.pinimg.com/originals/bc/d4/1f/bcd41f3425d917a27e9b46dbe0d3dc76.jpg') center/cover no-repeat;
+  color: var(--vanilla);
+  font-family: 'Playfair Display', serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* ==== Floating Sparkles ==== */
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #ffd6da 0%, transparent 60%);
+  border-radius: 50%;
+  animation: sparkleFloat linear forwards;
+  opacity: 0.8;
+}
+@keyframes sparkleFloat {
+  0% { transform: translateY(110vh) scale(0.8); opacity: 0.7; }
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+
+/* ==== Title ==== */
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 4.5em;
+  background: linear-gradient(90deg, #ffe6f0, #fff, #f7c7d3, #fff0f3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px rgba(255, 220, 230, 0.8);
+  margin-bottom: 15px;
+  opacity: 0;
+  animation: fadeSlideIn 2s ease forwards;
+}
+@keyframes fadeSlideIn {
+  from { transform: translateX(-80px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Alternate slide for next text */
+.slide-right {
+  animation: fadeSlideInRight 2s ease forwards;
+}
+@keyframes fadeSlideInRight {
+  from { transform: translateX(80px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+p {
+  color: #f8e6ca;
+  font-size: 1.2em;
+  margin-top: 10px;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+}
+
+/* ==== Enter Button ==== */
+.enter-btn {
+  margin-top: 60px;
+  padding: 14px 40px;
+  border: 2px solid var(--vanilla);
+  background-color: transparent;
+  color: var(--vanilla);
+  font-size: 1.1em;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.enter-btn:hover {
+  background-color: var(--vanilla);
+  color: var(--black-bean);
+  transform: scale(1.05);
+}
+
+/* Glowing ring effect */
+.enter-btn::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 30px;
+  background: radial-gradient(circle, rgba(255,200,210,0.6), transparent 70%);
+  animation: pulse 2.5s ease-in-out infinite;
+  z-index: -1;
+}
+@keyframes pulse {
+  0%,100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.1); }
+}
+
+/* ==== Scrolling Bottom Text ==== */
+.scrolling-text {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba(49, 14, 16, 0.85);
+  color: var(--vanilla);
+  padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 1em;
+  letter-spacing: 2px;
+  z-index: 10;
+}
+.scrolling-text span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scrollText 30s linear infinite;
+}
+@keyframes scrollText {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ==== Fade-out transition ==== */
+.fade-out {
+  animation: fadeOut 1.5s forwards;
+}
+@keyframes fadeOut {
+  to { opacity: 0; transform: scale(1.05); }
+}
+</style>
+</head>
+<body>
+
+<div id="sparkleContainer"></div>
+
+<h1 id="loveText">I love you, always</h1>
+<p>In every language that love speaks.</p>
+
+<button class="enter-btn" onclick="fadeAndNext()">Enter Our Story →</button>
+
+<div class="scrolling-text">
+  <span>Forever, in every heartbeat ♥ In every language ♥ In every lifetime ♥</span>
+</div>
+
+<script>
+/* === Floating Sparkles === */
+const sparkleContainer = document.getElementById("sparkleContainer");
+function createSparkle() {
+  const sparkle = document.createElement("div");
+  sparkle.classList.add("sparkle");
+  sparkle.style.left = Math.random() * 100 + "vw";
+  sparkle.style.animationDuration = 6 + Math.random() * 6 + "s";
+  sparkleContainer.appendChild(sparkle);
+  setTimeout(() => sparkle.remove(), 12000);
+}
+setInterval(createSparkle, 150);
+
+/* === Multilingual Rotating Text with Side Animation === */
+const texts = [
+  "I love you, always",
+  "मैं तुमसे हमेशा प्यार करती हूँ",
+  "હું તને હંમેશા પ્રેમ કરું છું",
+  "मी तुझ्यावर नेहमी प्रेम करते",
+  "আমি তোমায় চিরকাল ভালোবাসি",
+  "நான் உன்னை எப்போதும் நேசிக்கிறேன்",
+  "నేను నిన్ను ఎల్లప్పుడూ ప్రేమిస్తున్నాను",
+  "ನಾನು ನಿನ್ನನ್ನು ಸದಾ ಪ್ರೀತಿಸುತ್ತೇನೆ",
+  "ഞാൻ നിന്നെ എപ്പോഴും സ്നേഹിക്കുന്നു",
+  "ਮੈਂ ਤੈਨੂੰ ਹਮੇਸ਼ਾਂ ਪਿਆਰ ਕਰਦੀ ਹਾਂ",
+  "Je t’aime, toujours",
+  "Te amo, siempre",
+  "Ich liebe dich, immer",
+  "Ti amo, per sempre",
+  "Я тебя люблю, всегда",
+  "愛してる、いつも",
+  "사랑해, 언제나",
+  "我永远爱你",
+  "Eu te amo, sempre",
+  "Saya cinta kamu, selalu"
+];
+
+let i = 0;
+const phrase = document.getElementById('loveText');
+let direction = true;
+
+setInterval(() => {
+  phrase.style.opacity = 0;
+  setTimeout(() => {
+    phrase.textContent = texts[i];
+    phrase.classList.remove("slide-right");
+    if (direction) phrase.style.animation = "fadeSlideIn 2s ease forwards";
+    else {
+      phrase.classList.add("slide-right");
+      phrase.style.animation = "fadeSlideInRight 2s ease forwards";
+    }
+    phrase.style.opacity = 1;
+    direction = !direction;
+    i = (i + 1) % texts.length;
+  }, 400);
+}, 2500);
+
+/* === Page Transition === */
+function fadeAndNext() {
+  document.body.classList.add('fade-out');
+  setTimeout(() => window.location.href = "timeline.html", 1500);
+}
+</script>
+</body>
+</html>

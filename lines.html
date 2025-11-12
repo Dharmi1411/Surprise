@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lines That Reminds Me Of You</title>
+
+<style>
+  /* 🎨 STYLE SECTION ONLY (no HTML here) */
+
+  body {
+    margin: 0;
+    background-color: #cbc0b2;
+    font-family: "Times New Roman", serif;
+    color: #1b1b1b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+  }
+
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4.2rem;
+    text-align: center;
+    margin: 60px 0 40px 0;
+    background: linear-gradient(90deg, #192338, #1E2E4F, #31487A, #8FB3E2, #D9E1F1);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 6s ease-in-out infinite;
+    letter-spacing: 3px;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 220px);
+    width: 90%;
+    max-width: 1300px;
+    border: 2px solid #111;
+    border-collapse: collapse;
+    gap: 0;
+  }
+
+  .back {
+    position: relative;
+    margin: 60px 0;
+    align-self: flex-start;
+    margin-left: 5%;
+    padding: 12px 28px;
+    font-size: 1rem;
+    color: #3c2f2f;
+    background: linear-gradient(90deg, #f4e3d3, #d3b7a0);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Times New Roman', serif;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+    transition: all 0.4s ease;
+    opacity: 0;
+    animation: fadeInButton 1.5s ease 2s forwards;
+  }
+
+  .back:hover {
+    background: linear-gradient(90deg, #e4c8b1, #bfa28f);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  }
+
+  @keyframes fadeInButton {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  body.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+
+  .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #111;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .cell.text {
+    background-color: #f6f1ea;
+    padding: 20px;
+    font-size: 1.05rem;
+    color: #1b1b1b;
+    flex-direction: column;
+    opacity: 0;
+    animation: fadeIn 1.8s ease forwards;
+  }
+
+  .cell.text span.credit {
+    display: block;
+    margin-top: 12px;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #6b5b4d;
+    opacity: 0.8;
+  }
+
+  .image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: fadeDown 1.6s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Falling circles animation */
+  .circles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 5;
+  }
+
+ .circle {
+  position: absolute;
+  top: -10px;
+  border-radius: 400%;
+border: 1.5px solid rgba(255, 170, 185, 0.8); /* soft glow pink */
+  background: transparent;
+  box-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
+  animation: fallCircle linear forwards;
+}
+
+
+  @keyframes fallCircle {
+    0% { transform: translateY(-10px) scale(0.8); opacity: 1; }
+    100% { transform: translateY(110vh) scale(1.5); opacity: 0; }
+  }
+
+</style>
+</head>
+
+<body>
+  <!-- ✅ Move your falling circles container HERE -->
+  <div class="circles" id="circles"></div>
+
+  <!-- Title -->
+  <h1>Lines That Reminds Me Of You</h1>
+
+  <!-- Grid content -->
+  <div class="grid">
+    <!-- Row A -->
+    <div class="cell image" style="background-image:url('a1.jpg');"></div>
+    <div class="cell text">
+      “Take my hand<br>
+      Take my whole life too<br>
+      For I can't help<br>
+      Falling in love with you”<br>
+      <span class="credit">~ Can’t Help Falling in Love by Elvis Presley</span>
+    </div>
+
+    <div class="cell image" style="background-image:url('a3.jpg');"></div>
+    <div class="cell text">
+      “Baby, I'm dancing in the dark<br>
+      With you between my arms<br>
+      Barefoot on the grass<br>
+      Listening to our favourite song”<br>
+      <span class="credit">~ Perfect by Ed Sheeran</span>
+    </div>
+
+    <div class="cell image" style="background-image:url('a5.jpg');"></div>
+    <div class="cell text">
+      “Wish that you would hold me
+      Or just say that you were mine<br>
+      It's killing me slowly<br>
+      Dream a little dream of me”<br>
+      <span class="credit">~ Fuck it I love you by Lana Del Rey</span>
+    </div>
+
+    <!-- Row B -->
+    <div class="cell text">
+      “And I'm kissing you lying in my room<br>
+      Holding you until you fall asleep<br>
+      Stay with me, I don't want you to leave”<br>
+      <span class="credit">~ K. by Cigarettes After Sex</span>
+    </div>
+    <div class="cell image" style="background-image:url('b2.jpg');"></div>
+
+    <div class="cell text">
+      “But I promise you this<br>
+      I'll always look out for you”<br>
+      <span class="credit">~ Sparks by Coldplay</span>
+    </div>
+    <div class="cell image" style="background-image:url('b4.png');"></div>
+
+    <div class="cell text">
+      “Can I get a kiss?<br>
+      And can you make it last forever?”<br>
+      <span class="credit">~ See You Again by Tyler, The Creator</span>
+    </div>
+    <div class="cell image" style="background-image:url('b6.jpg');"></div>
+
+    <!-- Row C -->
+    <div class="cell image" style="background-image:url('c1.jpg');"></div>
+    <div class="cell text">
+      “Give your heart till the end of time<br>
+      Oh let me love you in the morning light”<br>
+      <span class="credit">~ Let Me Love You by Peter Murphy</span>
+    </div>
+
+    <div class="cell image" style="background-image:url('c3.png');"></div>
+    <div class="cell text">
+      “And I know all the bad things about you<br>
+      But I still think you're the purest of our kind”<br>
+      <span class="credit">~ Loom by Zach Bryan</span>
+    </div>
+
+    <div class="cell image" style="background-image:url('c5.jpg');"></div>
+    <div class="cell text">
+      “If you could see my thoughts<br>
+      You would see your face”<br>
+      <span class="credit">~ Ivy by Frank Ocean</span>
+    </div>
+
+    <!-- Row D -->
+    <div class="cell text">
+      “I've heard of a love that comes once in a lifetime<br>
+      And I'm pretty sure that you are that love of mine”<br>
+      <span class="credit">~ Dandelions by Ruth B.</span>
+    </div>
+    <div class="cell image" style="background-image:url('d2.jpg');"></div>
+
+    <div class="cell text">
+      “They couldn't see what I see in you”<br>
+      <span class="credit">~ As You Are by The Weeknd</span>
+    </div>
+    <div class="cell image" style="background-image:url('d4.jpg');"></div>
+
+    <div class="cell text">
+      “The distance and the time between us<br>
+      It'll never change my mind<br>
+      'Cause baby, I would die for you”<br>
+      <span class="credit">~ Die For You by The Weeknd</span>
+    </div>
+    <div class="cell image" style="background-image:url('d6.jpg');"></div>
+
+    <!-- Row E -->
+    <div class="cell image" style="background-image:url('e1.jpg');"></div>
+    <div class="cell text">
+      “I live to love you<br>
+      And I love to love you”<br>
+      <span class="credit">~ Music To Watch Boys To by Lana Del Rey</span>
+    </div>
+
+    <div class="cell image" style="background-image:url('e3.jpg');"></div>
+    <div class="cell text">
+      “They couldn't see what I see in you”<br>
+      <span class="credit">~ As You Are (Reprise) by The Weeknd</span>
+    </div>
+
+    <div class="cell image" style="background-image:url('e5.jpg');"></div>
+    <div class="cell text">
+      “Dance me all around the room<br>
+      Spin me like a ballerina, super high<br>
+      Dance me all around the moon”<br>
+      <span class="credit">~ If You Lie Down With Me by Lana Del Rey</span>
+    </div>
+
+
+  </div>
+
+  <!-- Back button -->
+  <button class="back" onclick="fadeToTimeline()">← Back to Timeline</button>
+
+  <script>
+    function fadeToTimeline() {
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = 'timeline.html';
+      }, 1000);
+    }
+
+    // 🎈 Falling circles animation
+    const circlesContainer = document.getElementById("circles");
+
+    function createCircle() {
+      const circle = document.createElement("div");
+      circle.classList.add("circle");
+      const size = Math.random() * 30 + 15;
+      circle.style.width = `${size}px`;
+      circle.style.height = `${size}px`;
+      circle.style.left = Math.random() * 100 + "vw";
+      circle.style.animationDuration = 4 + Math.random() * 5 + "s";
+      circlesContainer.appendChild(circle);
+      setTimeout(() => circle.remove(), 9000);
+    }
+
+    setInterval(createCircle, 200);
+  </script>
+
+</body>
+</html>
